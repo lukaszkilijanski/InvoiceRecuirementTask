@@ -45,4 +45,9 @@ class User
     {
         return $this->email;
     }
+
+    public function getStatus(): UserStatus
+    {
+        return $this->status;
+    }
 }
