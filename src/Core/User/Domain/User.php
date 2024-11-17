@@ -3,6 +3,7 @@
 namespace App\Core\User\Domain;
 
 use App\Common\EventManager\EventsCollectorTrait;
+use App\Core\User\Domain\Event\UserCreatedEvent;
 use Doctrine\ORM\Mapping as ORM;
 use App\Core\User\Domain\Status\UserStatus;
 
@@ -36,6 +37,8 @@ class User
         $this->id = null;
         $this->email = $email;
         $this->status = UserStatus::INACTIVE;
+
+        $this->record(new UserCreatedEvent($this));
     }
 
     public function getEmail(): string
