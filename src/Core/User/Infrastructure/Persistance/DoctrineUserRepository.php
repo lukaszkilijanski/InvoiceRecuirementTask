@@ -10,9 +10,7 @@ use Doctrine\ORM\NonUniqueResultException;
 
 class DoctrineUserRepository implements UserRepositoryInterface
 {
-    public function __construct(private readonly EntityManagerInterface $entityManager)
-    {
-    }
+    public function __construct(private readonly EntityManagerInterface $entityManager) {}
 
     /**
      * @throws NonUniqueResultException
@@ -33,5 +31,15 @@ class DoctrineUserRepository implements UserRepositoryInterface
         }
 
         return $user;
+    }
+
+    public function save(User $user): void
+    {
+        $this->entityManager->persist($user);
+    }
+
+    public function flush(): void
+    {
+        $this->entityManager->flush();
     }
 }

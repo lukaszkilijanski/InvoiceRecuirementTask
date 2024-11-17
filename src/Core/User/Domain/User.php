@@ -35,6 +35,7 @@ class User
     {
         $this->id = null;
         $this->email = $email;
+        $this->status = UserStatus::INACTIVE;
     }
 
     public function getEmail(): string
