@@ -57,4 +57,16 @@ class DoctrineUserRepository implements UserRepositoryInterface
     {
         return $this->getByEmail($email)->getStatus() === UserStatus::ACTIVE;
     }
+
+    public function getUsersByStatus(UserStatus $status)
+    {
+        return $this->entityManager
+            ->createQueryBuilder()
+            ->select('u')
+            ->from(User::class, 'u')
+            ->where('u.status = :user_status')
+            ->setParameter(':user_status', $status->value)
+            ->getQuery()
+            ->getResult();
+    }
 }

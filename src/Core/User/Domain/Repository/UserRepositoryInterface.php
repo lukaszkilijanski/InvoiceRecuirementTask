@@ -4,6 +4,7 @@ declare(strict_types=1);
 namespace App\Core\User\Domain\Repository;
 
 use App\Core\User\Domain\Exception\UserNotFoundException;
+use App\Core\User\Domain\Status\UserStatus;
 use App\Core\User\Domain\User;
 
 interface UserRepositoryInterface
@@ -18,4 +19,6 @@ interface UserRepositoryInterface
     public function flush(): void;
 
     public function checkIfUserIsActiveByEmail(string $email): bool;
+
+    public function getUsersByStatus(UserStatus $status);
 }

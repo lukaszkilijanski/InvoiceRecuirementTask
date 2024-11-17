@@ -50,4 +50,9 @@ class User
     {
         return $this->status;
     }
+
+    public function getId(): int
+    {
+        return $this->id;
+    }
 }
