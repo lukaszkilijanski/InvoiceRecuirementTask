@@ -10,22 +10,22 @@ use Doctrine\Migrations\AbstractMigration;
 /**
  * Auto-generated Migration: Please modify to your needs!
  */
-final class Version20241117163546 extends AbstractMigration
+final class Version20241117174449 extends AbstractMigration
 {
     public function getDescription(): string
     {
-        return 'Add status column to user';
+        return 'Add unique requirement for email column';
     }
 
     public function up(Schema $schema): void
     {
         // this up() migration is auto-generated, please modify it to your needs
-        $this->addSql('ALTER TABLE users ADD status VARCHAR(16) NOT NULL');
+        $this->addSql('CREATE UNIQUE INDEX UNIQ_1483A5E9E7927C74 ON users (email)');
     }
 
     public function down(Schema $schema): void
     {
         // this down() migration is auto-generated, please modify it to your needs
-        $this->addSql('ALTER TABLE users DROP status');
+        $this->addSql('DROP INDEX UNIQ_1483A5E9E7927C74 ON users');
     }
 }
